@@ -8,9 +8,9 @@ Toutefois, vous mettrez en pratique ces connaissances et les principes associés
 
 - **Avantage** : vous allez vite vous rendre compte que de vérifier quelque chose de simple n’est pas si simple…
 
-- **Inconvénient** : certaines techniques que vous allez utiliser vont sembler complexes à mettre en œuvre pour un exemple si trivial. Toutefois, votre expérience devrait vous permettre de relativiser ce sentiment vis a vis des développements que vous réalisez en entreprise.
+- **Inconvénient** : certaines techniques que vous allez utiliser vont sembler complexes à mettre en œuvre pour un exemple si trivial. Toutefois, votre expérience devrait vous permettre de relativiser ce sentiment vis a vis des développements que vous réalisez en entreprise...
 
-A la fin de la séance de TP vous devrez remettre à votre encadrant un rapport de TP (manuscrit) détaillant le code écrit et les techniques de vérification employées. Des commentaires pertinents sur ces techniques et leurs intérêts commenteront chacune des questions traitées.
+A la fin de la séance de TP vous devrez remettre à votre encadrant un rapport de TP (manuscrit) détaillant le code écrit et les techniques de vérification employées. Des commentaires pertinents sur ces techniques et leurs intérêts commenteront chacune des questions traitées. Les différents codes sources développés devront être envoyés par e-mail.
 
 Algorithme de calcul du PGCD de 2 nombres entiers :
 
@@ -27,7 +27,7 @@ FONCTION PGCD( A, B )
 FIN FONCTION
 ```
 
-Dans cet exercice pédagogique nous considérerons que les données que doit traiter votre algorithme sont bornées dans l'intervalle **[0, 65535]**. En effet pour des valeurs d'entrée beaucoup plus grandes ne nombre d'itérations nécessaire afin de faire converger l'algorihtme pourraient être  
+Dans cet exercice pédagogique nous considérerons que les données qui doivent être traitées par votre algorithme sont bornées dans l'intervalle **[0, 65535]**. En effet pour des valeurs d'entrée beaucoup plus grandes ne nombre d'itérations nécessaire afin de faire converger l'algorihtme pourraient être  
 
 ## Etape 1
 
@@ -178,7 +178,7 @@ Afin de transmettre des données sur la carte, vous devrez compiler et executer 
 
 L'approche employée pour valider le système sur carte est comme vous vous en doutez insuffisante...
 
-- Proposez une approche **originale** afin de solutionner ce problème.
+- Proposez une approche **originale** et **personnelle** afin de solutionner ce problème.
 
 ## Etape 9
 
