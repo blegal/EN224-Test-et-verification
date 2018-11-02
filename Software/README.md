@@ -60,18 +60,7 @@ Le nombre de couples d'entrées possibles pour votre fonction est égale à (655
 - Modifiez votre code **C** en conséquence.
 - Validez le fait que votre implantation de l'algorithme PGCD fonctionne sur l'ensemble de ces valeurs aléatoires.
 
-**Note**:
-* assigner à N1 la valeur de N2 et à N2 la valeur du reste de la division de N1 par N2;
-* recommencer jusqu'à ce que le reste de la division soit nul. 
-A ce moment, N1 contient le PGCD.
-Exemple: si N1 vaut 14 et N2 vaut 32, on obtient successivement
-N1			N2
-14			32
-32			14=14 mod 32
-14			4=32 mod 14
-4			2=14 mod 4
-2			2=4 mod 2
-2			0=2 mod 2
+**Note**: Si vous n'avez pas d'idées sur l'approche à employer... Au bout de quelques minutes, faites vous aider par votre enseignant...
 
 ## Etape 4
 
@@ -124,11 +113,11 @@ PORT (
 	CLK      : in  STD_LOGIC;
 	RESET    : in  STD_LOGIC;
 
-	idata_a  : in  STD_LOGIC_VECTOR (15 downto 0);
-	idata_b  : in  STD_LOGIC_VECTOR (15 downto 0);
+	idata_a  : in  STD_LOGIC_VECTOR (31 downto 0);
+	idata_b  : in  STD_LOGIC_VECTOR (31 downto 0);
 	idata_en : in  STD_LOGIC;
 
-	odata    : out STD_LOGIC_VECTOR (15 downto 0);
+	odata    : out STD_LOGIC_VECTOR (31 downto 0);
 	odata_en : out STD_LOGIC
 );
 END PGCD;
@@ -140,3 +129,82 @@ END PGCD;
 
 ## Etape 2
 
+Maintenant que vous possédez, une version fonctionnelle du module de calcul du PGDC vous pouvez commencer l'instrumentation de votre code source à l'aide d'assertions.
+
+- Inserez dans votre module les mêmes assertions que celles que vous avez utilisées dans votre code C.
+- Vérifiez le bon fonctionnement du module instrumenté.
+
+## Etape 3
+
+Afin de vérifier de manière plus convaincante votre module VHDL, il est nécessaire d'étendre le nombre de valeurs de test. Pour cela, une solution pertinante consiste à récuperer des données "fiables" de fichiers externes.
+
+- Modifiez votre testbench afin de lire les données de test depuis les fichiers générés par votre programme en C.
+- Afin de simplifiez l'analyse des résultats, vous prendrez soin d'inserer un processus de comparaison automatiques des résultats. Pour chque comparaison effectuée, ce dernier affichera dans la console, le nombre de tests éffectués et le nombre d'erreurs détectées.
+
+## Etape 4
+
+Afin de mieux comprendre le fonctionnement du module en simulation et surtout estimer ses performances nous souhaitons connaitre le nombre de cycles d'horloge nécessaire à chaque calcul de PGDC.
+
+- Ajoutez dans votre module PGCD les lignes de codes nécessaires afin d'implanter cette nouvelle fonctionnalité.
+- Un affichage dans le terminal fournira a la fin de chaque calcul le temps nécessaire à sa complétion.
+
+**Note:** Afin de ne pas dégrader les performances du module post-synthèse vous prendrez soin d'insérer les annotations siuvenate aux endroits pertinants.
+
+```
+-- pragma translate_on
+-- pragma translate_off
+```
+
+## Etape 6
+
+Calcul automatique du nombre de données traitées correctement.
+
+## Etape 7
+
+Toutes les étapes de vérification que nous avons déployé jusqu'à maintenant vous ont permis de valider en simulation votre composant. Toutefois, en simulation certains défaut peuvent ne pas apparaitre. Afin de s'assurer du bon fonctionnement de votre circuit nous allons donc faire une vérification sur carte FPGA.
+
+Afin de vous simplifier la vie, votre enseignant met à votre disposition les outils nécessaires à la communication avec la carte Nexys-4.
+
+- Ajoutez les fichiers VHDL présents dans le repertoire Etape_7 à votre projet Vivado.
+- Ajoutez le fichier de contraintes dédié à la carte Nexys-4.
+- Lancez la génération du bitstream.
+- Une fois toutes ces étapes réalisées, configurer le FPGA à l'aide du bitstream.
+
+Afin de transmettre des données sur la carte, vous devrez compiler et executer le programme C++ se trouvant dans le repertoire **c_codes**.
+
+- Mettez en place la manipulation et validez le bon fonctionnement du système.
+
+## Etape 8
+
+L'approche employée pour valider le système sur carte est comme vous vous en doutez insuffisante...
+
+- Proposez une approche **originale** afin de solutionner ce problème.
+
+## Etape 9
+
+Afin de mettre au point un système numérique sur carte, il est parfois nécessaire d'analyser ce qui s'y passe en **temps réel**. Jusqu'à maintenant pour y arriver vous avez ressorti la valeur des signaux internes sur des LEDS, etc.  Cependant, vous avez pu constatez que ces approches sont chronophrages et limitées !
+
+Dans cette derniere partie, nous allons nous interesser à l'analyse en temps réel des données traitées par notre module PGDC.
+
+Pour cela, référez vous au document de référence produit par Xilinx ([UG908](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2015_4/ug936-vivado-tutorial-programming-debugging.pdf)). Les informations essentielles sont situées à partir de la page 32.
+
+- Utilisez cette technique afin d'observer en temps réel le traitement de vos données dans le module PGDC.
+- Concluez sur les avantages et les inconvénients de cette approche.
+
+**Annexes**
+
+Voici une autre approche permettant de calculer la valeur du PGCD entre 2 nombres (N1, N2).
+
+- Assignez à N1 la valeur de N2 et à N2 la valeur du reste de la division de N1 par N2;
+- Recommencez jusqu'à ce que le reste de la division soit nul. 
+- A ce moment, N1 contient le PGCD.
+
+**Exemple**: Si N1 vaut 14 et N2 vaut 32, on obtient successivement
+
+- N1			N2
+- 14			32
+- 32			14=14 mod 32
+- 14			4=32 mod 14
+- 4			2=14 mod 4
+- 2			2=4 mod 2
+- 2			0=2 mod 2
