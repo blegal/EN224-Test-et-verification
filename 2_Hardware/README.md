@@ -1,74 +1,94 @@
-Vérification – Code coverage
+# Back to VHDL design :-)
 
-L’environnement logiciel utilisé pour ce TP est ModelSim avec le langage de description matériel VHDL. L’objectif de ce TP est d’analyser l’intérêt d’outils de type code coverage.
-Rappel :  code coverage   analyse non statique (stimuli obligatoire)
+Maintenant que vous êtes devenus des experts du test et de la vérification des composants logiciels, nous allons nous intéresser à l'application des mêmes méthodes dans le domaine du matériel.
 
-Les différents fichiers .vhd utilisés se trouvent sur le le serveur WEB de l’école et plus particulièrement sur le site pédagogique de votre enseignant dans la partie « TP de Test ».
+## Etape 1
 
-http://uuu.enseirb.fr/~legal/download/Electronique/Test_Verification/
+Ecrivez un module VHDL permettant d'implanter le calcul du PGCD de manière itérative. Afin d'uniformiser le développement de vos modules VHDL, vous utiliserez le prototype suivant:
 
-Créez un répertoire sur votre compte et copiez les fichiers.
+```
+ENTITY PGCD IS
+PORT ( 
+	CLK      : in  STD_LOGIC;
+	RESET    : in  STD_LOGIC;
 
-Partie  1 : prise en main, généralités
-1) Créer un projet modelsim, compiler les fichiers compteur.vhd et bench_compteur.vhd (test-bench du compteur) et lancer la simulation (bench_compteur) pour vérifier le bon fonctionnement du compteur.
+	idata_a  : in  STD_LOGIC_VECTOR (31 downto 0);
+	idata_b  : in  STD_LOGIC_VECTOR (31 downto 0);
+	idata_en : in  STD_LOGIC;
 
-2) Maintenant, compilez les fichiers en mode coverage (instrumentation du code) :
-vcom -coverAll compteur.vhd bench_compteur.vhd
+	odata    : out STD_LOGIC_VECTOR (31 downto 0);
+	odata_en : out STD_LOGIC
+);
+END PGCD;
+```
 
-Remarque: il est possible de spécifier le mode coverage en cliquant du bouton droit sur les fichiers puis en sectionnant les cases adéquates dans l’onglet proprieties.
+- Lancez l'outil Vivado et créez un projet ciblant le FPGA disponible sur la carte Nexys-4.
+- Décrivez votre module PGDC en langage VHDL.
+- Ecrivez un testbench permettant de vérifier son bon fonctionnement. Dans un premier temps vous limiterez cette approche à 3 ou 4 couples de valeurs.
 
-charger la simulation de l’entity bench_compteur :
-vsim –coverage bench_compteur
+## Etape 2
 
-puis lancer la simulation :
-run –all
-Note : il est bien entendu possible d’analyser pas à pas la simulation (run [-…])
+Maintenant que vous possédez, une version fonctionnelle du module de calcul du PGDC vous pouvez commencer l'instrumentation de votre code source à l'aide d'assertions.
 
-Analyser les différents outils de code coverage disponibles sous ModelSim.
+- Inserez dans votre module les mêmes assertions que celles que vous avez utilisées dans votre code C.
+- Vérifiez le bon fonctionnement du module instrumenté.
 
+## Etape 3
 
-====================================
+Afin de vérifier de manière plus convaincante votre module VHDL, il est nécessaire d'étendre le nombre de valeurs de test. Pour cela, une solution pertinante consiste à récuperer des données "fiables" de fichiers externes.
 
-Différents types de code coverage sont possibles avec ModelSim.
+- Modifiez votre testbench afin de lire les données de test depuis les fichiers générés par votre programme en C.
+- Afin de simplifiez l'analyse des résultats, vous prendrez soin d'inserer un processus de comparaison automatiques des résultats. Pour chque comparaison effectuée, ce dernier affichera dans la console, le nombre de tests éffectués et le nombre d'erreurs détectées.
 
+## Etape 4
 
-L’outil renseigne directement le code source quant au nombre d’exécutions de chaque instruction (placer la souris sur l’instruction)
+Afin de mieux comprendre le fonctionnement du module en simulation et surtout estimer ses performances nous souhaitons connaitre le nombre de cycles d'horloge nécessaire à chaque calcul de PGDC.
 
-La fenêtre « missed coverage » renseigne spécifiquement sur les structures (statement, branch, …) non exécutées. (cliquer sur la ligne affichée dans missed coverage pour avoir des informations (Details) sur la non-exécution de la structure en question)
+- Ajoutez dans votre module PGCD les lignes de codes nécessaires afin d'implanter cette nouvelle fonctionnalité.
+- Un affichage dans le terminal fournira a la fin de chaque calcul le temps nécessaire à sa complétion.
 
-La fenêtre « instance coverage » indique les différents taux de couverture.
+**Note:** Afin de ne pas dégrader les performances du module post-synthèse vous prendrez soin d'insérer les annotations siuvenate aux endroits pertinants.
 
-Il est également possible d’avoir le détail des basculements des signaux (toggle coverage) :
-Ouvrir une fenêtre objects (view>objects)
-Afficher (tools>toggle coverage>add>signals in design) (à faire avant de lancer la simulation)  
+```
+-- pragma translate_on
+-- pragma translate_off
+```
 
+## Etape 5
 
+Les résultats fournis par le moniteur que vous venez d'inserer dans votre module démontrent qu'il peut être nécessaire d'attendre jusqu'à 65535 cycles d'horloge avant qu'une donnée ne soit calculée... Ce délai est bien trop long :-(
 
+- Proposez une solution permettant de réduire au moins d'un facteur 16 cette durée.
+- A l'aide des bancs de test dévelopés précédement, validez la nouvelles implantation de votre module.
 
+## Etape 6
 
-3) Le fichier compteur précédent ne permet pas d’exploiter le « condition coverage ». Créer un nouveau projet, compiler les fichiers composent.vhd et sim_composent.vhd en mode coverage et lancer la simulation. Analyser les résultats du coverage. Observer les « missed conditions » entre autre. Modifier le testbench pour avoir les plus grands taux de couverture (100%) sans pour autant exécuter toutes les combinaisons des données d’entrée.
+Toutes les étapes de vérification que nous avons déployé jusqu'à maintenant vous ont permis de valider en simulation votre composant. Toutefois, en simulation certains défaut peuvent ne pas apparaitre. Afin de s'assurer du bon fonctionnement de votre circuit nous allons donc faire une vérification sur carte FPGA.
 
+Afin de vous simplifier la vie, votre enseignant met à votre disposition les outils nécessaires à la communication avec la carte Nexys-4.
 
-Partie  2 : la vérification, « c’est pas un problème !»
-Le fichier C2.vhd correspond au schéma ci-dessous.
+- Ajoutez les fichiers VHDL présents dans le repertoire Etape_7 à votre projet Vivado.
+- Ajoutez le fichier de contraintes dédié à la carte Nexys-4.
+- Lancez la génération du bitstream.
+- Une fois toutes ces étapes réalisées, configurer le FPGA à l'aide du bitstream.
 
+Afin de transmettre des données sur la carte, vous devrez compiler et executer le programme C++ se trouvant dans le repertoire **c_codes**.
 
-Vérifier le fonctionnement de C2 par une simulation en mode normal (sans code coverage) en complétant le fichier test-bench c2_sim.vhd.
-Modifier C2.vhd si nécessaire pour que C2 fonctionne (soit simulable).
+- Mettez en place la manipulation et validez le bon fonctionnement du système.
 
-Peut-on garantir que C2 fonctionne bien avec les quelques stimulus utilisés ?  Passer en mode coverage et observer entre autre les taux de couverture.  Un taux de couverture de 100% signifie-t-il que tout à été vérifié ?
+## Etape 7
 
-Partie  3 :  la vérification, « c’est pas un problème » (bis)
-Le fichier Operateur_3.vhd correspond à un multiplieur en format flottant IEEE-754 32 bits (A*B).
-Pour ce rendre compte de la complexité de l’étape de vérification (peut-on vraiment dire que ce qui a été développé est fonctionnellement correct ?), on se propose d’analyser ce fichier.
-On ne possède malheureusement pas de modèle de référence exécutable du multiplieur flottant mais seulement de quelques valeurs pour la vérification (voir dernière page de ce document) et des quelques informations ci-dessous concernant le format flottant.
-Quelques erreurs ont été faites lors du codage (Operateur_3), (mais on suppose qu’on ne le sait pas).
+L'approche employée pour valider le système sur carte est comme vous vous en doutez insuffisante...
 
-On veut vérifier qu’Opérateur_3 est fonctionnellement correct. Créer un fichier de test_bench avec quelques stimuli pour cela. Vérifier les valeurs résultats et bien sur faire une analyse code coverage.
+- Proposez une approche **originale** et **personnelle** afin de solutionner ce problème.
 
- 
-================================================
+## Etape 8
 
-Quelques informations sur les flottants :
+Afin de mettre au point un système numérique sur carte, il est parfois nécessaire d'analyser ce qui s'y passe en **temps réel**. Jusqu'à maintenant pour y arriver vous avez ressorti la valeur des signaux internes sur des LEDS, etc.  Cependant, vous avez pu constatez que ces approches sont chronophrages et limitées !
 
-Principe :  
+Dans cette derniere partie, nous allons nous interesser à l'analyse en temps réel des données traitées par notre module PGDC.
+
+Pour cela, référez vous au document de référence produit par Xilinx ([UG908](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2015_4/ug936-vivado-tutorial-programming-debugging.pdf)). Les informations essentielles sont situées à partir de la page 32.
+
+- Utilisez cette technique afin d'observer en temps réel le traitement de vos données dans le module PGDC.
+- Concluez sur les avantages et les inconvénients de cette approche.
