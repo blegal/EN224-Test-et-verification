@@ -16,7 +16,7 @@ begin
    synchrone : process (reset,clk)
    begin
      if reset='0' then
-	count<=(others=>'0');
+        count<=(others=>'0');
      elsif clk'event and clk='1' then
          case up is
              when '1' => count <= count + 1;
@@ -25,5 +25,7 @@ begin
          end case;
      end if ;
     end process ;
+
     output <= count;
+
 end comportementale;

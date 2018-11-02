@@ -5,20 +5,20 @@ use work.all;
 ENTITY bench_composent IS
 END bench_composent;
 
-ARCHITECTURE bench OF bench_composent IS
+ARCHITECTURE bench OF bench_composant IS
 
-component composent
+component composant
    port ( a : in bit;
          b : in bit;
          c : in bit;
 	      x, y : out bit);
-   end component;
+   end componant;
 
  signal as, bs, cs, xs, ys : bit :='0';
 
 begin
 
- c1 : composent port map (as, bs, cs, xs, ys);
+ c1 : composant port map (as, bs, cs, xs, ys);
 
 process
 	begin
