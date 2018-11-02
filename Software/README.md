@@ -92,12 +92,51 @@ Maintenant que vous maitrisez le fonctionnement des assertions dans un programme
 
 ## Etape 6
 
-Développez un programme permettant de réaliser des tests unitaires sur la fonction que vous venez de développer. Ces tests unitaires devront couvrir un jeu de tests dont le nombre des données ainsi que les valeurs est laissé à votre appréciation. Développez le code et validez le.
+Développez un programme **main** permettant de réaliser des tests unitaires sur la fonction PGCD que vous avez développée.
+
+- Ces tests unitaires devront couvrir un jeu de tests dont le nombre des données ainsi que les valeurs est laissé à votre appréciation.
+- Développez ce code et validez le.
 
 ## Etape 8
 
-Afin de simplifier le test de composants (fonctions) pouvant être utilisés dans plusieurs projets, on utilise souvent des fichiers externes. Ecrivez un programme (main) permettant de lire les valeurs de A et B dans un fichier (texte) et écrivant les résultats dans un autre fichier (texte). Placez les résultats théoriques dans un fichier nommé ref.txt et utilisez la commande diff afin de comparer les résultats théoriques et pratiques.
+Afin de simplifier le test de composants (fonctions) pouvant être utilisés dans plusieurs projets, on utilise souvent des valeurs provenant de fichiers externes.
 
-## Etape 9
+- Ecrivez un programme (main) permettant de lire les valeurs de **A** et **B** dans un fichier (texte) et écrivant les résultats dans un autre fichier (texte).
+- Placez les résultats théoriques du calcul du PGCD dans un fichier nommé **ref.txt** 
+- Executez votre programme afin de générer votre fichier de contenant vos résultats.
+- Utilisez la commande **diff** afin de comparer les résultats théoriques et pratiques.
 
-Les valeurs présentes dans le fichier ref.txt sont généralement issues d’une autre version de l’algorithme (code Matlab par exemple). Cette approche permet d’utiliser une « golden model » lors de la conception d’un code d’implantation
+Les valeurs présentes dans le fichier ref.txt sont généralement issues d’une autre implantation de l’algorithme à étudier (du code Matlab par exemple). Cette approche permet d’utiliser un « golden model » lors de la conception d’un code d’implantation
+
+- Quels sont les avantages et les inconvénients de cette approche par rapport à la génération aléatoire de valeurs de test ?
+
+# Back to VHDL design :-)
+
+Maintenant que vous êtes devenus des experts du test et de la vérification des composants logiciels, nous allons nous intéresser à l'application des mêmes méthodes dans le domaine du matériel.
+
+## Etape 1
+
+Ecrivez un module VHDL permettant d'implanter le calcul du PGCD de manière itérative. Afin d'uniformiser le développement de vos modules VHDL, vous utiliserez le prototype suivant:
+
+```
+ENTITY PGCD IS
+PORT ( 
+	CLK      : in  STD_LOGIC;
+	RESET    : in  STD_LOGIC;
+
+	idata_a  : in  STD_LOGIC_VECTOR (15 downto 0);
+	idata_b  : in  STD_LOGIC_VECTOR (15 downto 0);
+	idata_en : in  STD_LOGIC;
+
+	odata    : out STD_LOGIC_VECTOR (15 downto 0);
+	odata_en : out STD_LOGIC
+);
+END PGCD;
+```
+
+- Lancez l'outil Vivado et créez un projet ciblant le FPGA disponible sur la carte Nexys-4.
+- Décrivez votre module PGDC en langage VHDL.
+- Ecrivez un testbench permettant de vérifier son bon fonctionnement. Dans un premier temps vous limiterez cette approche à 3 ou 4 couples de valeurs.
+
+## Etape 2
+
