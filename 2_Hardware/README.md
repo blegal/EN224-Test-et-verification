@@ -30,14 +30,14 @@ END PGCD;
 
 Maintenant que vous possédez, une version fonctionnelle du module de calcul du PGDC vous pouvez commencer l'instrumentation de votre code source à l'aide d'assertions.
 
-- Inserez dans votre module les mêmes assertions que celles que vous avez utilisées dans votre code C.
+- Inserez dans votre module les mêmes assertions que celles que vous avez utilisées dans votre code **C/C++**.
 - Vérifiez le bon fonctionnement du module instrumenté.
 
 ## Etape 3
 
 Afin de vérifier de manière plus convaincante votre module VHDL, il est nécessaire d'étendre le nombre de valeurs de test. Pour cela, une solution pertinante consiste à récuperer des données "fiables" de fichiers externes.
 
-- Modifiez votre testbench afin de lire les données de test depuis les fichiers générés par votre programme en C.
+- Modifiez votre testbench afin de lire les données de test depuis les fichiers générés par votre programme en **C/C++**.
 - Afin de simplifiez l'analyse des résultats, vous prendrez soin d'inserer un processus de comparaison automatiques des résultats. Pour chque comparaison effectuée, ce dernier affichera dans la console, le nombre de tests éffectués et le nombre d'erreurs détectées.
 
 ## Etape 4
@@ -72,7 +72,7 @@ Afin de vous simplifier la vie, votre enseignant met à votre disposition les ou
 - Lancez la génération du bitstream.
 - Une fois toutes ces étapes réalisées, configurer le FPGA à l'aide du bitstream.
 
-Afin de transmettre des données sur la carte, vous devrez compiler et executer le programme C++ se trouvant dans le repertoire **c_codes**.
+Afin de transmettre des données sur la carte, vous devrez compiler et executer le programme **C/C++** se trouvant dans le repertoire **c_codes**.
 
 - Mettez en place la manipulation et validez le bon fonctionnement du système.
 
