@@ -27,7 +27,7 @@ FONCTION PGCD( A, B )
 FIN FONCTION
 ```
 
-Dans cet exercice pédagogique nous considérerons que les données que doit traiter votre algorithme [0, 255]. En effet pour des valeurs d'entrée beaucoup plus grandes ne nombre d'itérations nécessaire afin de faire converger l'algorihtme pourraient être  
+Dans cet exercice pédagogique nous considérerons que les données que doit traiter votre algorithme [0, 65535]. En effet pour des valeurs d'entrée beaucoup plus grandes ne nombre d'itérations nécessaire afin de faire converger l'algorihtme pourraient être  
 
 ## Etape 1
 
