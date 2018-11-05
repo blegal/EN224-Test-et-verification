@@ -48,7 +48,7 @@ Afin de vous aider dans cette tache, le repertoire **Etape_1** contient les fich
 
 Maintenant que vous avez testé manuellement votre fonction, nous allons utiliser une approche semi-automatisée qui va permettre d'étendre le nombre de tests éffectués.
 
-- Ecrivez deux fonctions (RandA et RandB) qui permettent de générer aléatoirement des valeurs de A et B (entre 0 à 255).
+- Ecrivez deux fonctions (RandA et RandB) qui permettent de générer aléatoirement des valeurs de A et B (entre 0 à 65535).
 - Utilisez ces 2 fonctions afin de tester votre fonction à l’aide de 20 couples de valeurs différentes.
 - Vous vous **assurerer** que les résultats sont corrects.
 
