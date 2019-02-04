@@ -8,7 +8,7 @@ Toutefois, vous mettrez en pratique ces connaissances et les principes associés
 
 - **Avantage** : vous allez vite vous rendre compte que de vérifier quelque chose de simple n’est pas si simple…
 
-- **Inconvénient** : certaines techniques que vous allez utiliser vont sembler complexes à mettre en œuvre pour un exemple si trivial. Toutefois, votre expérience devrait vous permettre de relativiser ce sentiment vis a vis des développements que vous réalisez en entreprise...
+- **Inconvénient** : certaines techniques que vous allez utiliser vont sembler complexes à mettre en œuvre pour un exemple si trivial. Toutefois, votre expérience devrait vous permettre de relativiser ce sentiment vis-à-vis des développements que vous réalisez en entreprise...
 
 A la fin de la séance de TP vous devrez remettre à votre encadrant un rapport de TP (manuscrit) détaillant le code écrit et les techniques de vérification employées. Des commentaires pertinents sur ces techniques et leurs intérêts commenteront chacune des questions traitées. Les différents codes sources développés devront être envoyés par e-mail.
 
@@ -39,7 +39,7 @@ int PGCD(const int A, const int B);
 
 Afin de vous aider dans cette tache, le repertoire **Etape_1** contient les fichiers nécessaires à cette tache.
 
-- Reprenez l’algorithme de calcul du PGDC et écrivez la fonction **C/C++** correspondante dans le fichier **main.cpp**.
+- Reprenez l’algorithme de calcul du PGDC et écrivez la fonction **C/C++** correspondante dans le fichier **main.c**.
 - Testez et validez votre code en écrivant un **main** qui d’exécute votre fonction et affiche les résultats dans le terminal.
 - Executez votre programme **main** afin de tester un couple de données.
 - Maintenant, choississez une dizaine de couples de valeurs permettant de bien tester votre production.
@@ -53,6 +53,8 @@ Maintenant que vous avez testé manuellement votre fonction, nous allons utilise
 - Vous vous **assurerez** que les résultats sont corrects.
 - Que se passe t'il si vous augmentez le nombre de valeurs testées à 2000 ?
 
+**Note**: Si vous n'avez pas d'idées du pourquoi (et APRES AVOIR REFLECHI...) faites vous aider par votre enseignant.
+
 ## Etape 3
 
 Le nombre de couples d'entrées possibles pour votre fonction est égale à (65536 * 65536) = 4294836225. Pour le moment nous n'avons testé que 20 valeurs...
@@ -61,11 +63,11 @@ Le nombre de couples d'entrées possibles pour votre fonction est égale à (655
 - Modifiez votre code **C/C++** en conséquence.
 - Validez le fait que votre implantation de l'algorithme PGCD fonctionne sur l'ensemble de ces valeurs aléatoires.
 
-**Note**: Si vous n'avez pas d'idées sur l'approche à employer... Au bout de quelques minutes, faites vous aider par votre enseignant...
+**Note**: Si vous n'avez pas d'idées sur l'approche à employer... Au bout de quelques minutes, faites vous aider par votre enseignant.
 
 ## Etape 4
 
-Mettez en place les mécanismes d’assertion vus en cours. Afin de vous assurer que les valeurs d'entrée et de sorite de votre fonction PGCD sont toujours cohérentes.
+Mettez en place les mécanismes d’assertion vus en cours (à partir de la planche 130). Afin de vous assurer que les valeurs d'entrée et de sorite de votre fonction PGCD sont toujours cohérentes.
 
 - Dans un premier temps vous n'insérerez que des pré-conditions.
 - Vérifiez que les assertions réalisent bien leur travail lors de l'éxécution de votre programme.
@@ -101,6 +103,14 @@ Les valeurs présentes dans le fichier **ref.txt** sont généralement issues d�
 - Quels sont les avantages et les inconvénients de cette approche par rapport à la génération aléatoire de valeurs de test ?
 
 # Annexes
+
+## Les cas particuliers...
+
+En considérant que tout nombre entier est un diviseur de zéro (car 0 × b = 0 quel que soit b) il vient que, pour tout entier non nul b, PGCD(0, b) = PGCD(b, 0) = b.
+
+La définition usuelle ne permet pas de définir PGCD(0, 0) puisqu'il n'existe pas de plus grand diviseur de 0. On pose par convention : PGCD(0, 0) = 0.
+
+## Une autre approche
 
 Voici une autre approche permettant de calculer la valeur du PGCD entre 2 nombres (N1, N2).
 
