@@ -1,9 +1,9 @@
-CC=g++
-LDFLAGS=-lpthread -lm
+CC=gcc
+LDFLAGS=-lm
 EXEC=main
-SRC=./src/main.cpp
+SRC=./src/main.c
 
-OBJ= $(SRC:.cpp=.o)
+OBJ= $(SRC:.c=.o)
 
 CFLAGS=-O2 -Wall
 
@@ -12,7 +12,7 @@ all: $(EXEC)
 main: $(OBJ)
 	$(CC) $(CFLAGS) -o ./bin/$@ $^ $(LDFLAGS)
 
-%.o: %.cpp
+%.o: %.c
 	$(CC) $(CFLAGS) -o $@ -c $< $(CFLAGS)
 
 .PHONY: clean mrproper
