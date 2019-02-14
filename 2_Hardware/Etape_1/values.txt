@@ -1,0 +1,18 @@
+(II) Starting PGCD program
+PGDC(   44,    72) =     4
+PGDC(   30,   239) =     1
+PGDC(  221,   123) =     1
+PGDC(   61,    99) =     1
+PGDC(   44,   170) =     2
+PGDC(  175,   214) =     1
+PGDC(  127,   113) =     1
+PGDC(  242,    14) =     2
+PGDC(  222,   140) =     2
+PGDC(  249,   101) =     1
+PGDC(  250,   204) =     2
+PGDC(   72,    62) =     2
+PGDC(   99,   172) =     1
+PGDC(  226,   131) =     1
+PGDC(   35,    24) =     1
+PGDC(   36,    77) =     1
+(II) End of PGCD program

@@ -5,9 +5,9 @@
 void store_in_binary(FILE* f, int n)
 {
 	int i;
-	for(i = 0; i < 16; i += 1)
+	for(i = 0; i < 32; i += 1)
 	{
-		int bit = (n >> (15 - i)) & 0x01;
+		int bit = (n >> (31 - i)) & 0x01;
 		fprintf(f, "%d", bit);
 	}
 	fprintf(f, "\n");
