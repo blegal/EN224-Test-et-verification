@@ -2,11 +2,11 @@
 
 ## Introduction
 
-Cette première séance de TP vise à illustrer les différentes techniques que vous avez pu voir en cours et à vous faire réfléchir aux notions de test de vérification.
+Cette première séance de TP vise à illustrer les différentes techniques que vous avez pu voir en cours et à vous faire réfléchir aux problèmatiques de vérification durant les étapes de conception.
 
-Toutefois, vous mettrez en pratique ces connaissances et les principes associés que dans le domaine de la conception logicielle. Ce TP s’articule autour de la mise au point et la validation d’une fonction élémentaire. L’utilisation de cette fonction élémentaire possède un avantage et un inconvénient :
+Toutefois, vous mettrez dans cette partie en pratique ces connaissances et les principes associés que dans le domaine de la conception logicielle. Ce TP s’articule autour de la mise au point et la validation d’une fonction algorihtmique élémentaire. L’utilisation de cette fonction élémentaire possède un avantage et un inconvénient :
 
-- **Avantage** : vous allez vite vous rendre compte que de vérifier quelque chose de simple n’est pas si simple…
+- **Avantage** : vous allez vite vous rendre compte que de vérifier quelque chose de simple n’est pas si aisé que cela…
 
 - **Inconvénient** : certaines techniques que vous allez utiliser vont sembler complexes à mettre en œuvre pour un exemple si trivial. Toutefois, votre expérience devrait vous permettre de relativiser ce sentiment vis-à-vis des développements que vous réalisez en entreprise...
 
