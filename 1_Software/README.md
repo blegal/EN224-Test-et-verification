@@ -37,7 +37,7 @@ A partir de l'algorithme décrit ci-dessus écrivez une fonction **C/C++** impla
 int PGCD(const int A, const int B);
 ```
 
-Afin de vous aider dans cette tache, le repertoire **Etape_1** contient les fichiers nécessaires à cette tache.
+Afin de vous aider, le repertoire **Etape_1** contient les fichiers nécessaires à cette tache.
 
 - Reprenez l’algorithme de calcul du PGDC et écrivez la fonction **C/C++** correspondante dans le fichier **main.c**.
 - Testez et validez votre code en écrivant un **main** qui d’exécute votre fonction et affiche les résultats dans le terminal.
@@ -57,7 +57,7 @@ Maintenant que vous avez testé manuellement votre fonction, nous allons utilise
 
 ## Etape 3
 
-Le nombre de couples d'entrées possibles pour votre fonction est égale à (65536 * 65536) = 4294836225. Pour le moment nous n'avons testé que 20 valeurs...
+Le nombre de couples d'entrées possibles pour votre fonction est égale à (65536 * 65536) = 4294836225. Pour le moment vous n'avez testé que 20 valeurs...
 
 - Proposez une solution afin d'étendre le nombre de test éffectué à 65536 valeurs (soit 0,0015% des couples possibles).
 - Modifiez votre code **C/C++** en conséquence.
@@ -98,7 +98,7 @@ Afin de simplifier le test de composants (fonctions) pouvant être utilisés dan
 - Executez votre programme afin de générer votre fichier de contenant vos résultats.
 - Utilisez la commande **diff** afin de comparer les résultats théoriques et pratiques.
 
-Les valeurs présentes dans le fichier **ref.txt** sont généralement issues d’une autre implantation de l’algorithme à étudier (du code Matlab par exemple). Cette approche permet d’utiliser un « golden model » lors de la conception d’un code d’implantation
+Les valeurs présentes dans le fichier **ref.txt** sont généralement issues d’une autre implantation de l’algorithme à étudier (du code Matlab par exemple). Cette approche permet d’utiliser un « golden model » lors de la conception d’un code d’implantation.
 
 - Quels sont les avantages et les inconvénients de cette approche par rapport à la génération aléatoire de valeurs de test ?
 
