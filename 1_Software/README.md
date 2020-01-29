@@ -27,7 +27,7 @@ FONCTION PGCD( A, B )
 FIN FONCTION
 ```
 
-Dans cet exercice pédagogique nous considérerons que les données qui doivent être traitées par votre algorithme sont bornées dans l'intervalle **[0, 65535]**. En effet pour des valeurs d'entrée beaucoup plus grandes le nombre d'itérations nécessaires afin de faire converger l'algorihtme pourraient être trop important.
+Dans cet exercice pédagogique nous considérerons que les données qui doivent être traitées par votre algorithme sont bornées dans l'intervalle **[1, 65535]**. En effet pour des valeurs d'entrée beaucoup plus grandes le nombre d'itérations nécessaires afin de faire converger l'algorihtme pourraient être trop important.
 
 ## Etape 1
 
