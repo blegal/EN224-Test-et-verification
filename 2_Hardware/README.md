@@ -1,6 +1,6 @@
 # Back to VHDL design :-)
 
-Maintenant que vous êtes devenus des experts du test et de la vérification des composants logiciels, nous allons nous intéresser à l'application des mêmes méthodes dans le domaine du matériel.
+Maintenant que vous êtes devenus des experts de la vérification de composants logiciels, nous allons nous intéresser à l'application des mêmes méthodes dans le domaine du matériel.
 
 ## Etape 1
 
@@ -38,16 +38,16 @@ Maintenant que vous possédez, une version fonctionnelle du module de calcul du 
 Afin de vérifier de manière plus convaincante votre module VHDL, il est nécessaire d'étendre le nombre de valeurs de test. Pour cela, une solution pertinante consiste à récuperer des données "fiables" de fichiers externes.
 
 - Modifiez votre testbench afin de lire les données de test depuis les fichiers générés par votre programme en **C/C++**.
-- Afin de simplifiez l'analyse des résultats, vous prendrez soin d'inserer un processus de comparaison automatiques des résultats. Pour chque comparaison effectuée, ce dernier affichera dans la console, le nombre de tests éffectués et le nombre d'erreurs détectées.
+- Afin de simplifiez l'analyse des résultats, vous prendrez soin d'inserer un processus de comparaison automatiques des résultats. Pour chaque comparaison effectuée, ce dernier affichera dans la console, le nombre de tests éffectués et le nombre d'erreurs détectées.
 
 ## Etape 4
 
-Afin de mieux comprendre le fonctionnement du module en simulation et surtout estimer ses performances nous souhaitons connaitre le nombre de cycles d'horloge nécessaire à chaque calcul de PGDC.
+Afin de mieux comprendre le fonctionnement du module en simulation et surtout estimer ses performances nous souhaitons connaitre le nombre de cycles d'horloge nécessaires à chaque calcul de PGDC.
 
 - Ajoutez dans votre module PGCD les lignes de codes nécessaires afin d'implanter cette nouvelle fonctionnalité.
 - Un affichage dans le terminal fournira a la fin de chaque calcul le temps nécessaire à sa complétion.
 
-**Note:** Afin de ne pas dégrader les performances du module post-synthèse vous prendrez soin d'insérer les annotations siuvenate aux endroits pertinants.
+**Note:** Afin de ne pas dégrader les performances du module post-synthèse vous prendrez soin d'insérer les annotations suivantes aux endroits pertinants.
 
 ```
 -- pragma translate_on
@@ -59,7 +59,7 @@ Afin de mieux comprendre le fonctionnement du module en simulation et surtout es
 Les résultats fournis par le moniteur que vous venez d'inserer dans votre module démontrent qu'il peut être nécessaire d'attendre jusqu'à 65535 cycles d'horloge avant qu'une donnée ne soit calculée... Ce délai est bien trop long :-(
 
 - Proposez une solution permettant de réduire au moins d'un facteur 16 cette durée.
-- A l'aide des bancs de test dévelopés précédement, validez la nouvelles implantation de votre module.
+- A l'aide des bancs de test dévelopés précédement, validez la nouvelle implantation de votre module.
 
 ## Etape 6
 
