@@ -89,7 +89,7 @@ Développez un programme **main** permettant de réaliser des tests unitaires su
 - Ces tests unitaires devront couvrir un jeu de tests dont le nombre des données ainsi que les valeurs est laissé à votre appréciation.
 - Développez ce code et validez le.
 
-## Etape 8
+## Etape 7
 
 Afin de simplifier le test de composants (fonctions) pouvant être utilisés dans plusieurs projets, on utilise souvent des valeurs provenant de fichiers externes.
 
