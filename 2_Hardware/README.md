@@ -40,6 +40,8 @@ Afin de vérifier de manière plus convaincante votre module VHDL, il est néces
 - Modifiez votre testbench afin de lire les données de test depuis les fichiers générés par votre programme en **C/C++**.
 - Afin de simplifiez l'analyse des résultats, vous prendrez soin d'inserer un processus de comparaison automatiques des résultats. Pour chaque comparaison effectuée, ce dernier affichera dans la console, le nombre de tests éffectués et le nombre d'erreurs détectées.
 
+https://www.nandland.com/vhdl/examples/example-file-io.html
+
 ## Etape 4
 
 Afin de mieux comprendre le fonctionnement du module en simulation et surtout estimer ses performances nous souhaitons connaitre le nombre de cycles d'horloge nécessaires à chaque calcul de PGDC.
