@@ -56,8 +56,8 @@ set_property PACKAGE_PIN E3 [get_ports CLK]
 #set_property PACKAGE_PIN P3 [get_ports {SW[14]}]					
 #	set_property IOSTANDARD LVCMOS33 [get_ports {SW[14]}]
 #Bank = 34, Pin name = IO_L14P_T2_SRCC_34,					Sch name = SW15
-set_property PACKAGE_PIN P4 [get_ports {RESET}]					
-	set_property IOSTANDARD LVCMOS33 [get_ports {RESET}]
+#set_property PACKAGE_PIN P4 [get_ports {RESET}]					
+#	set_property IOSTANDARD LVCMOS33 [get_ports {RESET}]
  
 
 ## LEDs
@@ -187,8 +187,8 @@ set_property PACKAGE_PIN V9 [get_ports {LED[1]}]
 
 ##Buttons
 ##Bank = 15, Pin name = IO_L3P_T0_DQS_AD1P_15,				Sch name = CPU_RESET
-set_property PACKAGE_PIN C12 [get_ports RESET]				
-	set_property IOSTANDARD LVCMOS33 [get_ports RESET]
+set_property PACKAGE_PIN C12 [get_ports NRESET]				
+	set_property IOSTANDARD LVCMOS33 [get_ports NRESET]
 #Bank = 15, Pin name = IO_L11N_T1_SRCC_15,					Sch name = BTNC
 #set_property PACKAGE_PIN E16 [get_ports {BTN[4]}]						
 #	set_property IOSTANDARD LVCMOS33 [get_ports {BTN[4]}]
