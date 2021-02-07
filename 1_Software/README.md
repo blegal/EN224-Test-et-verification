@@ -29,10 +29,6 @@ FIN FONCTION
 
 Dans cet exercice pédagogique nous considérerons que les données qui doivent être traitées par votre algorithme une fois intégrée dans le système sont bornées dans l'intervalle **[1, 65535]**. En effet pour des valeurs d'entrée beaucoup plus grandes le nombre d'itérations nécessaires afin de faire converger l'algorihtme pourraient être trop important.
 
-Couleurs : 
-color:red rouge
-color:green vert
-color:#aaccdd Red/Green/Blue en hexadécimal
 
 ## Etape 1
 
@@ -70,6 +66,7 @@ Maintenant que vous avez testé manuellement votre fonction, nous allons utilise
 
 ![alt text](../icons/rapport.png) Analyser votre capacité a écrire un programme fonctionnel du premier coup même si l'algorithme est trivial.
 
+:warning:
 
 ## Etape 3
 
