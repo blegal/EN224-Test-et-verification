@@ -40,10 +40,10 @@ int PGCD(const int A, const int B);
 
 Afin de vous aider, le repertoire **Etape_1** contient les fichiers nécessaires à cette tache.
 
-- [:arrow_forward:] Reprenez l’algorithme de calcul du PGDC et écrivez la fonction **C/C++** correspondante dans le fichier **main.c**.
-- [:o:] estez et validez votre code en écrivant un **main** qui d’exécute votre fonction et affiche les résultats dans le terminal.
-- [:ballot_box_with_check:] Executez votre programme **main** afin de tester un couple de données.
-- [:radio_button:] Maintenant, choississez une dizaine de couples de valeurs permettant de bien tester votre production.
+- [X] Reprenez l’algorithme de calcul du PGDC et écrivez la fonction **C/C++** correspondante dans le fichier **main.c**.
+- [X] estez et validez votre code en écrivant un **main** qui d’exécute votre fonction et affiche les résultats dans le terminal.
+- [X] Executez votre programme **main** afin de tester un couple de données.
+- [X] Maintenant, choississez une dizaine de couples de valeurs permettant de bien tester votre production.
 
 - [:wavy_dash:] ABCD.
 
