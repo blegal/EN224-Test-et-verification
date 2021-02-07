@@ -4,9 +4,9 @@ use IEEE.numeric_std.all;
 
 entity PGCD_uart is
     Port ( 
-           CLK       : in  STD_LOGIC;
-           NRESET    : in  STD_LOGIC;
-           LED 		 : out STD_LOGIC_VECTOR (1 downto 0);
+           CLK100MHZ : in  STD_LOGIC;
+           nRESET    : in  STD_LOGIC;
+           LED 		 : out STD_LOGIC_VECTOR (15 downto 0);
            RsRx      : in  STD_LOGIC;
            RsTx      : out STD_LOGIC
 	);
@@ -27,19 +27,22 @@ architecture Behavioral of PGCD_uart is
     SIGNAL   pack_to_uart_en   : STD_LOGIC_VECTOR ( 3 downto 0);
     
     SIGNAL   let_s_go          : STD_LOGIC;
-    
-    SIGNAL   RESET             : STD_LOGIC;
 
+    SIGNAL   RESET             : STD_LOGIC;
+    
 BEGIN
 
-    RESET <= NOT NRESET;
-
-    -------------------------------------------------------------------------------------
+    PROCESS(CLK100MHZ)
+    BEGIN
+        IF CLK100MHZ'event AND CLK100MHZ = '1' THEN
+            RESET <= NOT nRESET;
+        END IF;
+    END PROCESS;
         
     rcv : ENTITY work.UART_recv
     PORT MAP(
         RESET  => RESET,
-          clk  => CLK,
+          clk  => CLK100MHZ,
            rx  => RsRx,
           dat  => data_from_uart,
        dat_en  => data_from_uart_en
@@ -47,9 +50,9 @@ BEGIN
 
     -------------------------------------------------------------------------------------
            
-    PROCESS(clk)
+    PROCESS(CLK100MHZ)
     BEGIN
-        IF clk'event AND clk = '1' THEN
+        IF CLK100MHZ'event AND CLK100MHZ = '1' THEN
             IF RESET = '1' THEN
                 pack_from_uart    <= (others=>'0');
                 pack_from_uart_en <= (others=>'0');
@@ -74,7 +77,7 @@ BEGIN
 
     PGCD_ENGINE : ENTITY work.PGCD
     PORT MAP(
-        clk       => clk,
+        clk       => CLK100MHZ,
         reset     => reset,
         idata_a   => pack_from_uart(63 downto 32),
         idata_b   => pack_from_uart(31 downto  0),
@@ -85,9 +88,9 @@ BEGIN
 
     -------------------------------------------------------------------------------------
 
-    PROCESS(clk)
+    PROCESS(CLK100MHZ)
     BEGIN
-        IF clk'event AND clk = '1' THEN
+        IF CLK100MHZ'event AND CLK100MHZ = '1' THEN
             IF RESET = '1' THEN
                 pack_to_uart    <= (others=>'0');
                 pack_to_uart_en <= (others=>'0');
@@ -109,7 +112,7 @@ BEGIN
 
 	snd : ENTITY work.UART_fifoed_send
 	PORT MAP(
-   clk_100MHz   => CLK,
+   clk_100MHz   => CLK100MHZ,
 		RESET   => RESET,
      fifo_empty => OPEN,
      fifo_afull => OPEN,

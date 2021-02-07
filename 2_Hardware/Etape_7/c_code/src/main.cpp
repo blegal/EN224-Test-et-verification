@@ -100,7 +100,7 @@ int main (int argc, char * argv []){
 			int soft = PGDC_v2(a,b);
 	
 			if( hard != soft )
-				cout << endl << "PGCD(" << a << ", " << b << ") => " << hard << " == " << soft << endl;
+				cout << endl << b << " PGCD(" << a << ", " << b << ") => " << hard << " == " << soft << endl;
 		}
 	}
     
