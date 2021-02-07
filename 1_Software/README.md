@@ -45,14 +45,6 @@ Afin de vous aider, le repertoire **Etape_1** contient les fichiers nécessaires
 - [X] Executez votre programme **main** afin de tester un couple de données.
 - [X] Maintenant, choississez une dizaine de couples de valeurs permettant de bien tester votre production.
 
-- [:wavy_dash:] ABCD.
-
-- [:white_circle:] ABCD.
-
-- [:small_blue_diamond:] ABCD.
-
-
-
 :blue_book: Analyser votre capacité a écrire un programme fonctionnel du premier coup même si l'algorithme est trivial.
 
 
@@ -70,13 +62,10 @@ Maintenant que vous avez testé manuellement votre fonction, nous allons utilise
 
 - Corrigez ce petit défaut de conception.
 
-:bulb: abc
+:bulb: Si vous n'avez pas d'idées du pourquoi (et APRES AVOIR REFLECHI...) faites vous aider par votre enseignant...
 
-:exclamation: Si vous n'avez pas d'idées du pourquoi (et APRES AVOIR REFLECHI...) faites vous aider par votre enseignant...
+:question: Analyser votre capacité a écrire un programme fonctionnel du premier coup même si l'algorithme est trivial :question:
 
-:question: Analyser votre capacité a écrire un programme fonctionnel du premier coup même si l'algorithme est trivial.
-
-:warning:
 
 ## Etape 3
 
@@ -89,9 +78,9 @@ Le nombre de couples d'entrées possibles pour votre fonction est égale à (655
 
 - Validez le fait que votre implantation de l'algorithme **PGCD** fonctionne sur l'ensemble de ces valeurs aléatoires.
 
-![alt text](../icons/info.png) Si vous n'avez pas d'idées sur l'approche à employer, au bout de quelques minutes (de reflexion), faites vous aider par votre enseignant...
+:bulb: Si vous n'avez pas d'idées sur l'approche à employer, au bout de quelques minutes (de reflexion), faites vous aider par votre enseignant...
 
-![alt text](../icons/rapport.png) Analyser les avantages et les limitations de l'approche mise en oeuvre.
+:question: Analysez les avantages et les limitations de l'approche mise en oeuvre :question: 
 
 ## Etape 4
 
@@ -105,7 +94,7 @@ Mettez en place les mécanismes d’assertion vus en cours (à partir de la plan
 
 - Ensuite, vérifiez que lorsque l’on compile le programme en mode « final » ces dernières disparaissent.
 
-![alt text](../icons/rapport.png) Donnez l’intérêt et les limitaions liés à l'utilisation des pré-conditions dans une fonction.
+:question: Donnez l’intérêt et les limitaions liés à l'utilisation des pré-conditions dans une fonction :question: 
 
 
 ## Etape 5
@@ -118,7 +107,7 @@ Maintenant que vous maitrisez le fonctionnement des assertions dans un programme
 
 - Quelle est la limite de post-conditions ?
 
-![alt text](../icons/rapport.png) Donnez l’intérêt et les limitaions liés à l'utilisation des post-conditions.
+:question: Donnez l’intérêt et les limitaions liés à l'utilisation des post-conditions :question: 
 
 
 ## Etape 6
@@ -135,7 +124,7 @@ Grace à l'étape que vous venez d'effectuer, vous pouver tester facilement votr
 
 Dans un context industriel, on viendrait enrichir la liste des tests lorsque l'on découvre un bug. Les valeurs problematiques sont ajoutées comme des tests (assert). Les valeurs précédement présentes permettent de vérifier que la correction du bug n'a rien "cassé".
 
-![alt text](../icons/rapport.png) Donnez l’intérêt et les limitaions liés à l'utilisation de tests unitaires lors du développement d'une fonctionnalité.
+:question: Donnez l’intérêt et les limitaions liés à l'utilisation de tests unitaires lors du développement d'une fonctionnalité :question: 
 
 
 ## Etape 7
@@ -175,7 +164,7 @@ Une fois la description des séquences de test éffectuées:
 - Executez le programme ainsi obtenu et observez le résultat.
 - Modifiez vos tests afin de faire apparaitre des erreurs lors de l'execution.
 
-![alt text](../icons/rapport.png) Concluez sur l’intérêt et les limitaions liés à l'utilisation d'un framework permettant d'executer des tests unitaires.
+:question: Concluez sur l’intérêt et les limitaions liés à l'utilisation d'un framework permettant d'executer des tests unitaires :question: 
 
 
 ## Etape 8
@@ -206,7 +195,7 @@ Puis:
 
 - Utilisez la commande **diff** ou l'outil **meld** (ou **winmerge** pour ceux étant sous Windows) afin de comparer les résultats théoriques et pratiques (**ref_C.txt** et **resu_C.txt**).
 
-![alt text](../icons/rapport.png) Une fois de plus, vous conclurez sur l’intérêt et les limitaions de l'approche...
+:question: Une fois de plus, vous conclurez sur l’intérêt et les limitaions de l'approche... :question:
 
 <!-- 
 - Quels sont les avantages et les inconvénients de cette approche par rapport à la génération aléatoire de valeurs de test ?
