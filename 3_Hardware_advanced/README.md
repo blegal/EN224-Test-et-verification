@@ -4,7 +4,8 @@ L’environnement logiciel utilisé pour ce TP est ModelSim avec le langage de d
 
 **Rappel** : code coverage = analyse non statique (stimuli obligatoires)
 
-# Etape 1 :
+
+## Etape 1 :
 
 Dans cette première étape, vous allez prendre en main l'outil ModelSim. Pour cela vous allez réutiliser les fichiers developpés pour votre module PGDC.
 
@@ -70,7 +71,7 @@ Arretons de jouer avec des exemples pédagogiques... Durant vos semestres à l'�
 
 - Essayer de maximiser le taux de couverture des testbench que vous aviez écrit avant de suivre ce cours.
 
-# Pour allez plus loin...
+## Pour allez plus loin...
 
 Nous venons d'étudiez la mise en application de l'analyse de la couverture de code à des projets décrits en VHDL. Cepednant les outils de codevarge sont aussi employé dans le monde du logiciel.
 

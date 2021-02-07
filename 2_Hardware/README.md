@@ -22,32 +22,154 @@ PORT (
 END PGCD;
 ```
 
+Le signal **idata_en** indique a votre module VHDL que les entrées **idata_a** et **idata_b** sont valide et que vous devez donc démarrer un calcul. Le signal **idata_en** en théorie ne reste positionné à l'état haut qu'un seul cycle d'horloge.
+
+Le signal **odata_en** est le pendant du signal **idata_en**. Il indique au reste de votre système que votre module vient de terminer son calcul et que la sortie **odata** est valide. Charge à vous de maintenir ce signal à l'état haut qu'un seul et unique front d'horloge.
+
+Maintenant que vous avez connaissance du module que vous devez developper:
+
 - Lancez l'outil Vivado et créez un projet ciblant le FPGA disponible sur la carte Nexys-4.
+
+- **Déssinez** la machine d'états qui va vous permettre d'implanter le calcul du PGCD de 2 nombres.
+
 - Décrivez votre module PGDC en langage VHDL.
-- Ecrivez un testbench permettant de vérifier son bon fonctionnement. Dans un premier temps vous limiterez cette approche à 3 ou 4 couples de valeurs.
+
+- Ecrivez un testbench permettant de vérifier son bon fonctionnement. Dans un premier temps vous limiterez cette approche à 3 ou 4 couples de valeurs que vous coderez en dur dans le testbench.
+
+*information:* Pour générer le squelette de votre testbench en vhdl vous pouvez utiliser un générateur en ligne:
+
+- https://www.doulos.com/knowhow/perl/vhdl-testbench-creation-using-perl
+- https://vhdl.lapinoo.net/testbench/
+
 
 ## Etape 2
 
 Maintenant que vous possédez, une version fonctionnelle du module de calcul du PGDC vous pouvez commencer l'instrumentation de votre code source à l'aide d'assertions.
 
 - Inserez dans votre module les mêmes assertions que celles que vous avez utilisées dans votre code **C/C++**.
-- Vérifiez le bon fonctionnement du module instrumenté.
+- Vérifiez le bon fonctionnement du module instrumenté à l'aide d'une simulation.
+
+*information:* Vous trouverez des informations relatives a l'utilisation des assertions en VHDL ici: https://insights.sigasi.com/tech/vhdl-assert-and-report
+
 
 ## Etape 3
 
-Afin de vérifier de manière plus convaincante votre module VHDL, il est nécessaire d'étendre le nombre de valeurs de test. Pour cela, une solution pertinante consiste à récuperer des données "fiables" de fichiers externes.
+Ecrire des valeurs de test à la main en VHDL est les valider à l'oeil nu n'est pas une approche viable à long terme. En effet, cette derniere est chronophage et plantogene. On va donc maintenant automatiser la procédure de test de votre composant. Pour ce faire, on va réutiliser le code **C** que vous avez écrit dans la phase 1.
 
-- Modifiez votre testbench afin de lire les données de test depuis les fichiers générés par votre programme en **C/C++**.
-- Afin de simplifiez l'analyse des résultats, vous prendrez soin d'inserer un processus de comparaison automatiques des résultats. Pour chaque comparaison effectuée, ce dernier affichera dans la console, le nombre de tests éffectués et le nombre d'erreurs détectées.
+Pour pouvoir tester votre module VHDL, vous avez surement du écrire des lignes similaires à celles présentées ci-dessous:
 
-https://www.nandland.com/vhdl/examples/example-file-io.html
+```
+idata_a  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 10, 32) );
+idata_b  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 80, 32) );
+idata_en <= '1';
+wait 10 ns;
+idata_en <= '0';
+wait 1000 ns;
+```
+
+L'approche est interessante MAIS vous êtes obligé de regarder les signaux a chaque simulation afin de déterminer si le comportement de votre module est correct ou pas. De plus vous allongé la durée de simulation car vous ne maitrisez pas finement le temps d'execution du composant.
+
+Afin de palier à ces limitations, vous pouvez utiliser l'approche suivante:
+
+```
+idata_a  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 10, 32) );
+idata_b  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 80, 32) );
+idata_en <= '1';
+wait 10 ns;
+while odata_en = '0' loop
+    idata_en <= '0';
+    wait 10 ns;
+end loop;
+
+idata_a  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 18, 32) );
+idata_b  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 12, 32) );
+idata_en <= '1';
+wait 10 ns;
+while odata_en = '0' loop
+    idata_en <= '0';
+    wait 10 ns;
+end loop;
+```
+
+Ainsi les tests s'enchaineront automatiquement les uns apres les autres des que votre module VHDL a renvoyé une valeur. Cela évite les erreurs de timing lors de l'injection des données de test.
+
+- Modfiez votre testbench afin de tester et de valider cette approche.
+
+La situation est plus favorable que précédement, cependant le concepteur a toujours un role a jouer dans la procédure de test. En effet, la vérification des résultats se fait encore de manière visuelle. A l'aide des mécanismes d'assertion nous allons corriger cela.
+
+```
+idata_a  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 10, 32) );
+idata_b  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 80, 32) );
+idata_en <= '1';
+wait 10 ns;
+while odata_en = '0' loop
+    idata_en <= '0';
+    wait 10 ns;
+end loop;
+ASSERT UNSIGNED( odata = TO_UNSIGNED( 10, 32) ) SEVERITY ERROR;
+
+idata_a  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 18, 32) );
+idata_b  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 12, 32) );
+idata_en <= '1';
+wait 10 ns;
+while odata_en = '0' loop
+    idata_en <= '0';
+    wait 10 ns;
+end loop;
+ASSERT UNSIGNED( odata = TO_UNSIGNED( 6, 32) ) SEVERITY ERROR;
+```
+
+- Modfiez votre testbench afin de tester et de valider cette approche.
+
+D'un coup le concepteur a beaucoup moins de travail à réaliser. En effet, il suffit maintenant de vérifier que le simulateur ne s'est pas arrété lors de la simulation avec un message d'erreur. 
+
+Toutefois, il est possible de faire encore mieux:
+
+- Reprenez un de vos programme en **C/C++** écrit dans la premiere partie et modifier la fonction **main** afin de générer automatiquement les blocs VHDL utilisés pour le test (cf. ci-dessous). Pour ce faire l'utilisation de quelques printf devrait suffir...
+
+```
+idata_a  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 18, 32) );
+idata_b  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 12, 32) );
+idata_en <= '1';
+wait 10 ns;
+while odata_en = '0' loop
+    idata_en <= '0';
+    wait 10 ns;
+end loop;
+ASSERT UNSIGNED( odata = TO_UNSIGNED( 6, 32) ) SEVERITY ERROR;
+```
+
+- Executez votre programme et faites un copier-coller des informations affichées dans votre terminal directement dans votre testbench.
+
+- Lancez une simuation pour vérifier que cela fonctionne et valider l'interet de cette approche.
+
 
 ## Etape 4
 
-Afin de mieux comprendre le fonctionnement du module en simulation et surtout estimer ses performances nous souhaitons connaitre le nombre de cycles d'horloge nécessaires à chaque calcul de PGDC.
+Une autre approche évitant de devoir modifier votre fichier testbench en permance consiste à passer les données par des fichiers textuels. Le language VHDL permet de lire et d'écrire dans des fichiers textuels, cependant c'est plus compliqué qu'en lanage C...
 
-- Ajoutez dans votre module PGCD les lignes de codes nécessaires afin d'implanter cette nouvelle fonctionnalité.
-- Un affichage dans le terminal fournira a la fin de chaque calcul le temps nécessaire à sa complétion.
+Vous trouverez un exemple en suivant le lien ci-dessous:
+
+https://www.nandland.com/vhdl/examples/example-file-io.html
+
+- Modifiez votre testbench afin de lire les données destinées à votre module VHDL ainsi que les résultats à partir de fichiers textuels.
+
+Avant de pouvoir lancer la simulation du système vous devrez générer des fichiers de test à partir du code **C/C++** fourni dans le répertoire **Etape_4/test_generator**. Cette étape est obligatoire car l'API VHDL d'acces aux fichiers s'attend à trouver des vecteurs de bits.
+
+- Lancez une simuation pour vérifier que cela fonctionne et valider l'interet de cette approche.
+
+
+## Etape 5
+
+Afin de mieux comprendre le fonctionnement du module en simulation et surtout estimer ses performances nous souhaitons connaitre le nombre de cycles d'horloge nécessaire à chaque calcul de PGDC.
+
+- Ajoutez dans votre module PGCD les lignes de codes nécessaires afin d'implanter cette nouvelle fonctionnalité. 
+
+- Un affichage dans le terminal fournira a la fin de chaque calcul le temps nécessaire à sa complétion. Pour faire un **printf** en VHDL vous pouvez utiliser le code suivant:
+
+```
+REPORT "mon_unsigned : " & integer'image(to_integer( mon_unsigned ));
+```
 
 **Note:** Afin de ne pas dégrader les performances du module post-synthèse vous prendrez soin d'insérer les annotations suivantes aux endroits pertinants.
 
@@ -56,20 +178,23 @@ Afin de mieux comprendre le fonctionnement du module en simulation et surtout es
 -- pragma translate_off
 ```
 
-## Etape 5
-
-Les résultats fournis par le moniteur que vous venez d'inserer dans votre module démontrent qu'il peut être nécessaire d'attendre jusqu'à 65535 cycles d'horloge avant qu'une donnée ne soit calculée... Ce délai est bien trop long :-(
-
-- Proposez une solution permettant de réduire au moins d'un facteur 16 cette durée.
-- A l'aide des bancs de test dévelopés précédement, validez la nouvelle implantation de votre module.
 
 ## Etape 6
 
-Toutes les étapes de vérification que nous avons déployé jusqu'à maintenant vous ont permis de valider en simulation votre composant. Toutefois, en simulation certains défaut peuvent ne pas apparaitre. Afin de s'assurer du bon fonctionnement de votre circuit nous allons donc faire une vérification sur carte FPGA.
+Les résultats fournis par le moniteur que vous venez d'inserer dans votre module démontrent qu'il peut être nécessaire d'attendre jusqu'à 65535 cycles d'horloge avant qu'une donnée ne soit calculée... Ce délai est bien trop long :-(
+
+- Proposez une solution permettant de réduire (facilement) cette durée d'au moins d'un facteur 16.
+
+- A l'aide des bancs de test dévelopés précédement, validez la nouvelle implantation de votre module.
+
+
+## Etape 7
+
+Toutes les étapes de vérification que nous avons déployées jusqu'à maintenant vous ont permis de valider en simulation votre composant. Toutefois, en simulation certains défaut peuvent ne pas apparaitre. Afin de s'assurer du bon fonctionnement de votre circuit nous allons donc faire une vérification sur carte FPGA.
 
 Afin de vous simplifier la vie, votre enseignant met à votre disposition les outils nécessaires à la communication avec la carte Nexys-4.
 
-- Ajoutez les fichiers VHDL présents dans le repertoire Etape_7 à votre projet Vivado.
+- Ajoutez les fichiers VHDL présents dans le repertoire Etape_6 à votre projet Vivado.
 - Ajoutez le fichier de contraintes dédié à la carte Nexys-4.
 - Lancez la génération du bitstream.
 - Une fois toutes ces étapes réalisées, configurer le FPGA à l'aide du bitstream.

@@ -45,6 +45,7 @@ Afin de vous aider, le repertoire **Etape_1** contient les fichiers nécessaires
 - Executez votre programme **main** afin de tester un couple de données.
 - Maintenant, choississez une dizaine de couples de valeurs permettant de bien tester votre production.
 
+![alt text](../icons/rapport.png) **Note**: Si vous n'avez pas d'idées du pourquoi (et APRES AVOIR REFLECHI...) faites vous aider par votre enseignant.
 
 ## Etape 2
 
@@ -56,7 +57,7 @@ Maintenant que vous avez testé manuellement votre fonction, nous allons utilise
 - Que se passe t'il si vous augmentez le nombre de valeurs testées à 2000 ? Si rien d'étrange ne se produit augmentez le nombre de tests jusqu'à 200000...
 - Corrigez ce petit défaut de conception.
 
-**Note**: Si vous n'avez pas d'idées du pourquoi (et APRES AVOIR REFLECHI...) faites vous aider par votre enseignant.
+![alt text](../icons/info.png) **Note**: Si vous n'avez pas d'idées du pourquoi (et APRES AVOIR REFLECHI...) faites vous aider par votre enseignant.
 
 
 ## Etape 3
