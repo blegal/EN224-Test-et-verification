@@ -29,6 +29,7 @@ FIN FONCTION
 
 Dans cet exercice pédagogique nous considérerons que les données qui doivent être traitées par votre algorithme sont bornées dans l'intervalle **[1, 65535]**. En effet pour des valeurs d'entrée beaucoup plus grandes le nombre d'itérations nécessaires afin de faire converger l'algorihtme pourraient être trop important.
 
+
 ## Etape 1
 
 A partir de l'algorithme décrit ci-dessus écrivez une fonction **C/C++** implantatant le calcul du PGCD de deux nombres entiers. Le prototype de la fonction que vous devez écrire est fourni ci-dessous:
@@ -44,6 +45,7 @@ Afin de vous aider, le repertoire **Etape_1** contient les fichiers nécessaires
 - Executez votre programme **main** afin de tester un couple de données.
 - Maintenant, choississez une dizaine de couples de valeurs permettant de bien tester votre production.
 
+
 ## Etape 2
 
 Maintenant que vous avez testé manuellement votre fonction, nous allons utiliser une approche semi-automatisée qui va permettre d'étendre le nombre de tests éffectués.
@@ -51,28 +53,33 @@ Maintenant que vous avez testé manuellement votre fonction, nous allons utilise
 - Ecrivez deux fonctions (RandA et RandB) qui permettent de générer aléatoirement des valeurs de A et B comprises entre 0 à 65535.
 - Utilisez ces 2 fonctions afin de tester votre fonction à l’aide de 20 couples de valeurs différentes.
 - Vous vous **assurerez** que les résultats sont corrects.
-- Que se passe t'il si vous augmentez le nombre de valeurs testées à 2000 ?
+- Que se passe t'il si vous augmentez le nombre de valeurs testées à 2000 ? Si rien d'étrange ne se produit augmentez le nombre de tests jusqu'à 200000...
+- Corrigez ce petit défaut de conception.
 
 **Note**: Si vous n'avez pas d'idées du pourquoi (et APRES AVOIR REFLECHI...) faites vous aider par votre enseignant.
+
 
 ## Etape 3
 
 Le nombre de couples d'entrées possibles pour votre fonction est égale à (65536 * 65536) = 4294836225. Pour le moment vous n'avez testé que 20 valeurs...
 
-- Proposez une solution afin d'étendre le nombre de test éffectué à 65536 valeurs (soit 0,0015% des couples possibles).
+- Proposez une solution afin d'étendre le nombre de test éffectué à 65536 valeurs (soit 0,0015% des couples possibles) **sans que vous ayez besoin de valider manuellement les résultats**.
 - Modifiez votre code **C/C++** en conséquence.
 - Validez le fait que votre implantation de l'algorithme PGCD fonctionne sur l'ensemble de ces valeurs aléatoires.
 
 **Note**: Si vous n'avez pas d'idées sur l'approche à employer... Au bout de quelques minutes, faites vous aider par votre enseignant.
 
+
 ## Etape 4
 
 Mettez en place les mécanismes d’assertion vus en cours (à partir de la planche 130). Afin de vous assurer que les valeurs d'entrée et de sorite de votre fonction PGCD sont toujours cohérentes.
 
+- **Reprenez le code que nous avez écrit durant l'étape 1**.
 - Dans un premier temps vous n'insérerez que des pré-conditions.
 - Vérifiez que les assertions réalisent bien leur travail lors de l'éxécution de votre programme.
 - Ensuite, vérifiez que lorsque l’on compile le programme en mode « final » ces dernières disparaissent.
 - Quel est l’intérêt de mettre des pré-conditions dans un code ?
+
 
 ## Etape 5
 
@@ -82,23 +89,78 @@ Maintenant que vous maitrisez le fonctionnement des assertions dans un programme
 - Quel est l’intérêt de mettre des post-conditions dans un code ?
 - Quelle est la limite de post-conditions ?
 
+
 ## Etape 6
 
 Développez un programme **main** permettant de réaliser des tests unitaires sur la fonction PGCD que vous avez développée.
 
 - Ces tests unitaires devront couvrir un jeu de tests dont le nombre des données ainsi que les valeurs est laissé à votre appréciation.
-- Développez ce code et validez le.
+- Pour faire propre, dans cette question vous allez discociez la fonction PGDC de votre fichier **main.c**. Creéz un fichier **pgcd.h** et **pgcd.c**.
+- Développez ce code, modifiez votre **makefile** et validez le bon fonctionnement du système.
+
+Grace à l'étape que vous venez d'effectuer, vous pouver tester facilement votre fonction PGCD à chaque fois que vous la modifierez. Ce programme **main** qui vérifie que les résultats d'execution sont toujours valides permet de s'assurer que votre fonction PGCD ne régresse pas. On parle de test de non-régression. Dans un context industriel, on viendrait enrichir ce programme lorsque l'on découvre des bugs que l'on corrige: les valeurs problematiques sont ajoutées comme des tests (assert).
+
 
 ## Etape 7
 
-Afin de simplifier le test de composants (fonctions) pouvant être utilisés dans plusieurs projets, on utilise souvent des valeurs provenant de fichiers externes.
+La conception de programmes de test tel que celui que vous avez écrit durant l'étape 6 est fréquent lorsque le projet est d'envergure. Des frameworks existent afin de simplifier la rédaction et l'analyse des scénarios de test. Nous allons ici utiliser le framework Catch2 (https://github.com/catchorg/Catch2).
 
-- Ecrivez un programme (main) permettant de lire les valeurs de **A** et **B** dans un fichier (texte) et écrivant les résultats dans un autre fichier (texte).
-- Placez les résultats théoriques du calcul du PGCD dans un fichier nommé **ref.txt** 
-- Executez votre programme afin de générer votre fichier de contenant vos résultats.
-- Utilisez la commande **diff** afin de comparer les résultats théoriques et pratiques.
+Ce framework va vous permettre sans que vous ayez besoin d'écrire une fonction main:
+- d'exprimer les séquence de tests à éffectuer,
+- de classer vos test en catégories (plsuieurs scénarios applicatifs, etc.),
+- à l'execution de compter le nombre de tests réussis / échoués,
+- etc.
 
-Les valeurs présentes dans le fichier **ref.txt** sont généralement issues d’une autre implantation de l’algorithme à étudier (du code Matlab par exemple). Cette approche permet d’utiliser un « golden model » lors de la conception d’un code d’implantation.
+Afin de pouvoir utiliser ce framework écrit en C++ il va falloir opérer quelques changements dans notres projet. Dans le répertoire étape 7, le main.c est devenu un main.cpp (cela ne change rien pour vous). De plus dans le fichier makefile, l'invocation de gcc a été remplacée par g++.
+
+- ajoutez vos fichiers **pgcd.h** et **pgcd.c** dans le repertoire **src** de l'étape 7.
+- renommez le fichier **pgcd.c** en **pgcd.cpp**.
+
+Maintenant dans le fichier **main.cpp** vous allez décrire les séquences de test. Pour cela, vous allez vous appuyer sur la documentation du framework Catch2 (https://github.com/catchorg/Catch2/blob/devel/docs/tutorial.md).
+
+- Créez 2 *test-cases*:
+  - Le premier *test-case* sera en charge de tester le fonctionnement normal de votre fonction PGCD.
+  - Le second s'occupera des cas particuliers (ex. la valeur zéro).
+
+- Chaque *test-case* sera décomposé en 3 sections:
+  - La premiere section se focalisera sur les cas d'usage ou (A > B),
+  - La seconde section se focalisera sur les cas d'usage ou (A < B),
+  - La deniere section traitera sur les cas d'usage ou (A = B).
+  
+Une fois la description des séquences de test éffectuées:
+
+- Compilez les codes logiciels à l'aide du makefile fourni.
+- Executez le programme ainsi obtenu et observez le résultat.
+- Modifiez vos tests afin de faire apparaitre des erreurs lors de l'execution.
+
+
+## Etape 8
+
+Pour le moment vous avez codé manuellement les valeurs de test apres avoir idéntifié un couple de valeurs puis calculé le résultat attendu. L'approche est éfficace, cependant elle s'avere chronophage si l'on souhaite tester un grand nombre de valeurs. 
+
+Afin de simplifier la conception des procédures de test, on utilise quand cela est possible des valeurs provenant de modeles de référence via des fichiers externes.
+
+Les valeurs présentes dans les fichiers externes (données de référence) sont généralement issues d’une autre implantation de l’algorithme (golden model). Cette implantation de référence est généralement un code logiciel de plus haut niveau (matlab, python, etc.).
+
+Dans le cas présent, vous allez:
+
+- Utiliser à votre convenance, matlab, excel ou openoffice pour générer 65536 triplets (A, B, résultat).
+
+- Stocker ces données dans 3 fichers de type texte. Ces fichiers seront nommés **ref_A.txt**, **ref_B.txt** et **ref_C.txt**.
+
+Une fois que ces étapes préparatoire sont terminées:
+
+- **Reprenez le code C que vous aviez écrit durant l'étape 6**.
+
+Puis:
+
+- Ecrivez un programme (main) permettant de lire les valeurs de **A** et **B** dans les fichiers (**ref_A.txt** et **ref_B.txt**).
+
+- Ecrivez les résultats du calcul du PGDC dans un autre fichier de type texte (**resu_C.txt**).
+
+- Executez votre programme afin de générer votre fichier contenant les résultats.
+
+- Utilisez la commande **diff** ou l'outil **meld** (ou **winmerge** pour ceux étant sous Windows) afin de comparer les résultats théoriques et pratiques (**ref_C.txt** et **resu_C.txt**).
 
 - Quels sont les avantages et les inconvénients de cette approche par rapport à la génération aléatoire de valeurs de test ?
 
@@ -120,10 +182,10 @@ Voici une autre approche permettant de calculer la valeur du PGCD entre 2 nombre
 
 **Exemple**: Si N1 vaut 14 et N2 vaut 32, on obtient successivement
 
-- N1			N2
-- 14			32
-- 32			14=14 mod 32
-- 14			4=32 mod 14
-- 4			2=14 mod 4
-- 2			2=4 mod 2
-- 2			0=2 mod 2
+| Iter. | N1  | N2            |
+| ----- |:---:| -------------:|
+|     1 |   14 | 32           |
+|     2 |   32 | 14=14 mod 32 |
+|     3 |    4 | 2=14 mod 4   |
+|     4 |    2 | 2=4 mod 2    |
+|     5 |    2 | 0=2 mod 2    |
