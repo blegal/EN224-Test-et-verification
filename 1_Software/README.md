@@ -45,7 +45,7 @@ Afin de vous aider, le repertoire **Etape_1** contient les fichiers nécessaires
 - [X] Executez votre programme **main** afin de tester un couple de données.
 - [X] Maintenant, choississez une dizaine de couples de valeurs permettant de bien tester votre production.
 
-:blue_book: Analyser votre capacité a écrire un programme fonctionnel du premier coup même si l'algorithme est trivial.
+:page_with_curl: Analyser votre capacité a écrire un programme fonctionnel du premier coup même si l'algorithme est trivial.
 
 
 ## Etape 2
@@ -150,13 +150,13 @@ Afin de pouvoir utiliser ce framework écrit en **C++** il va falloir opérer qu
 Maintenant dans le fichier **main.cpp** vous allez décrire les séquences de test. Pour cela, vous allez vous appuyer sur la documentation du framework Catch2 (https://github.com/catchorg/Catch2/blob/devel/docs/tutorial.md).
 
 - [X] Créez 2 *test-cases*:
-  - [X] Le premier *test-case* sera en charge de tester le fonctionnement normal de votre fonction **PGCD**.
-  - [X] Le second s'occupera des cas particuliers (ex. la valeur zéro).
+  - Le premier *test-case* sera en charge de tester le fonctionnement normal de votre fonction **PGCD**.
+  - Le second s'occupera des cas particuliers (ex. la valeur zéro).
 
 - [X] Chaque *test-case* sera décomposé en 3 sections:
-  - [X] La premiere section se focalisera sur les cas d'usage ou (A > B),
-  - [X] La seconde section se focalisera sur les cas d'usage ou (A < B),
-  - [X] La deniere section traitera sur les cas d'usage ou (A = B).
+  - La premiere section se focalisera sur les cas d'usage ou (A > B),
+  - La seconde section se focalisera sur les cas d'usage ou (A < B),
+  - La deniere section traitera sur les cas d'usage ou (A = B).
   
 Une fois la description des séquences de test éffectuées:
 
