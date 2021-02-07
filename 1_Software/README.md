@@ -168,7 +168,7 @@ Une fois la description des séquences de test éffectuées:
 
 ## Etape 8
 
-Pour le moment vous avez codé manuellement les valeurs de test apres avoir idéntifié un couple de valeurs puis calculé le résultat attendu. L'approche est éfficace, cependant elle s'avere chronophage si l'on souhaite tester un grand nombre de valeurs. 
+Pour le moment vous avez codé manuellement les valeurs de test apres avoir idéntifié un couple de valeurs puis calculé le résultat attendu. L'approche est éfficace, cependant elle s'avere chronophage si l'on souhaite tester un grand nombre de valeurs.
 
 Afin de simplifier la conception des procédures de test, on utilise quand cela est possible des valeurs provenant de modeles de référence via par exemple l'utilisation de fichiers externes.
 
