@@ -64,9 +64,9 @@ Maintenant que vous avez testé manuellement votre fonction, nous allons utilise
 
 :bulb: abc
 
-:information_source: Si vous n'avez pas d'idées du pourquoi (et APRES AVOIR REFLECHI...) faites vous aider par votre enseignant...
+:exclamation: Si vous n'avez pas d'idées du pourquoi (et APRES AVOIR REFLECHI...) faites vous aider par votre enseignant...
 
-:clipboard: Analyser votre capacité a écrire un programme fonctionnel du premier coup même si l'algorithme est trivial.
+:memo: Analyser votre capacité a écrire un programme fonctionnel du premier coup même si l'algorithme est trivial.
 
 :warning:
 
