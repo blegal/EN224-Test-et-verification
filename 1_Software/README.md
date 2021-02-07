@@ -40,12 +40,12 @@ int PGCD(const int A, const int B);
 
 Afin de vous aider, le repertoire **Etape_1** contient les fichiers nécessaires à cette tache.
 
-- Reprenez l’algorithme de calcul du PGDC et écrivez la fonction **C/C++** correspondante dans le fichier **main.c**.
-- Testez et validez votre code en écrivant un **main** qui d’exécute votre fonction et affiche les résultats dans le terminal.
-- Executez votre programme **main** afin de tester un couple de données.
-- Maintenant, choississez une dizaine de couples de valeurs permettant de bien tester votre production.
+- [x] Reprenez l’algorithme de calcul du PGDC et écrivez la fonction **C/C++** correspondante dans le fichier **main.c**.
+- [x] estez et validez votre code en écrivant un **main** qui d’exécute votre fonction et affiche les résultats dans le terminal.
+- [x] Executez votre programme **main** afin de tester un couple de données.
+- [x] Maintenant, choississez une dizaine de couples de valeurs permettant de bien tester votre production.
 
-![alt text](../icons/rapport.png) Analyser votre capacité a écrire un programme fonctionnel du premier coup même si l'algorithme est trivial.
+:blue_book: Analyser votre capacité a écrire un programme fonctionnel du premier coup même si l'algorithme est trivial.
 
 
 ## Etape 2
@@ -66,13 +66,14 @@ Maintenant que vous avez testé manuellement votre fonction, nous allons utilise
 
 :exclamation: Si vous n'avez pas d'idées du pourquoi (et APRES AVOIR REFLECHI...) faites vous aider par votre enseignant...
 
-:memo: Analyser votre capacité a écrire un programme fonctionnel du premier coup même si l'algorithme est trivial.
+:question: Analyser votre capacité a écrire un programme fonctionnel du premier coup même si l'algorithme est trivial.
 
 :warning:
 
 ## Etape 3
 
 Le nombre de couples d'entrées possibles pour votre fonction est égale à (65536 * 65536) = 4294836225. Pour le moment vous n'avez testé que 20 valeurs...
+
 
 - Proposez une solution afin d'étendre le nombre de test éffectué à 65536 valeurs (soit 0,0015% des couples possibles) **sans que vous ayez besoin de valider manuellement les résultats**.
 
