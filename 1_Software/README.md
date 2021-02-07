@@ -62,9 +62,11 @@ Maintenant que vous avez testé manuellement votre fonction, nous allons utilise
 
 - Corrigez ce petit défaut de conception.
 
-![alt text](../icons/info.png) Si vous n'avez pas d'idées du pourquoi (et APRES AVOIR REFLECHI...) faites vous aider par votre enseignant...
+:bulb: abc
 
-![alt text](../icons/rapport.png) Analyser votre capacité a écrire un programme fonctionnel du premier coup même si l'algorithme est trivial.
+:information_source: Si vous n'avez pas d'idées du pourquoi (et APRES AVOIR REFLECHI...) faites vous aider par votre enseignant...
+
+:clipboard: Analyser votre capacité a écrire un programme fonctionnel du premier coup même si l'algorithme est trivial.
 
 :warning:
 
