@@ -57,6 +57,8 @@ Maintenant que vous possédez, une version fonctionnelle du module de calcul du 
 https://insights.sigasi.com/tech/vhdl-assert-and-report
 ```
 
+:page_with_curl: Dans votre rapport vous indiquerez les assertions que vous avez introduites. De plus, vous indiquerez quels usages sont possibles en VHDL en on en C/C++.
+
 
 ## Etape 3
 
@@ -145,9 +147,10 @@ end loop;
 ASSERT UNSIGNED( odata = TO_UNSIGNED( 6, 32) ) SEVERITY ERROR;
 ```
 
-- [X] Executez votre programme et faites un copier-coller des informations affichées dans votre terminal directement dans votre testbench.
+- [x] Executez votre programme et faites un copier-coller des informations affichées dans votre terminal directement dans votre testbench.
+- [x] Lancez une simuation pour vérifier que cela fonctionne et valider l'interet de cette approche.
 
-- [X] Lancez une simuation pour vérifier que cela fonctionne et valider l'interet de cette approche.
+:page_with_curl: Dans votre rapport vous commenterez l'avantage de cette approche et indiquerez son inconvénient majeur.
 
 
 ## Etape 4
@@ -163,6 +166,8 @@ https://www.nandland.com/vhdl/examples/example-file-io.html
 Avant de pouvoir lancer la simulation du système vous devrez générer des fichiers de test à partir du code **C/C++** fourni dans le répertoire **Etape_4/test_generator**. Cette étape est obligatoire car l'API VHDL d'acces aux fichiers s'attend à trouver des vecteurs de bits.
 
 - [X] Lancez une simuation pour vérifier que cela fonctionne et valider l'interet de cette approche.
+
+:page_with_curl: Dans votre rapport vous comparerez cette approche avec la précédente.
 
 
 ## Etape 5
@@ -189,9 +194,10 @@ REPORT "mon_unsigned : " & integer'image(to_integer( mon_unsigned ));
 
 Les résultats fournis par le moniteur que vous venez d'inserer dans votre module démontrent qu'il peut être nécessaire d'attendre jusqu'à 65535 cycles d'horloge avant qu'une donnée ne soit calculée... Ce délai est bien trop long :-(
 
-- [X] Proposez une solution permettant de réduire (facilement) cette durée d'au moins d'un facteur 16.
-
+- [x] Proposez une solution permettant de réduire (facilement) cette durée d'au moins d'un facteur 16.
 - [X] A l'aide des bancs de test dévelopés précédement, validez la nouvelle implantation de votre module.
+
+:page_with_curl: Dans votre rapport vous indiquerez la méthode que vous avez employée afin d'atteindre votre objectif. De plus vous analyserez l'impact des modifications de votre code VHDL sur la structure du testbench.
 
 
 ## Etape 7
@@ -209,6 +215,9 @@ Afin de transmettre des données sur la carte, vous devrez compiler et executer 
 
 - [X] Mettez en place la manipulation et validez le bon fonctionnement du système.
 
+:page_with_curl: Identifiez les avantages et les inconvénients de l'approche utilisée afin de valider le comportement de votre module sur carte FPGA.
+
+
 ## Etape 8
 
 L'approche employée ici pour valider le système sur carte est comme vous vous en doutez insuffisante...
@@ -225,3 +234,5 @@ Pour cela, référez vous au document de référence produit par Xilinx ([ug936]
 
 - [X] Utilisez cette technique afin d'observer en temps réel le traitement de vos données dans le module PGDC.
 - [X] Concluez sur les avantages et les inconvénients de cette approche.
+
+:page_with_curl: Identifiez les avantages et les inconvénients de l'approche mise en oeuvre.
