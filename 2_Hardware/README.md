@@ -209,19 +209,19 @@ Afin de transmettre des données sur la carte, vous devrez compiler et executer 
 
 - [X] Mettez en place la manipulation et validez le bon fonctionnement du système.
 
-## Etape 7
+## Etape 8
 
-L'approche employée pour valider le système sur carte est comme vous vous en doutez insuffisante...
+L'approche employée ici pour valider le système sur carte est comme vous vous en doutez insuffisante...
 
 - [X] Proposez une approche **originale** et **personnelle** afin de solutionner ce problème.
 
-## Etape 8
+## Etape 9
 
 Afin de mettre au point un système numérique sur carte, il est parfois nécessaire d'analyser ce qui s'y passe en **temps réel**. Jusqu'à maintenant pour y arriver vous avez ressorti la valeur des signaux internes sur des LEDS, etc.  Cependant, vous avez pu constatez que ces approches sont chronophrages et limitées !
 
 Dans cette derniere partie, nous allons nous interesser à l'analyse en temps réel des données traitées par notre module PGDC.
 
-Pour cela, référez vous au document de référence produit par Xilinx ([UG908](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2015_4/ug936-vivado-tutorial-programming-debugging.pdf)). Les informations essentielles sont situées à partir de la page 32.
+Pour cela, référez vous au document de référence produit par Xilinx ([ug936](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2012_3/ug936-vivado-tutorial-programming-debugging.pdf)). Les informations essentielles sont situées à partir de la page 32.
 
 - [X] Utilisez cette technique afin d'observer en temps réel le traitement de vos données dans le module PGDC.
 - [X] Concluez sur les avantages et les inconvénients de cette approche.
