@@ -68,9 +68,9 @@ Pour pouvoir tester votre module VHDL, vous avez surement du écrire des lignes 
 idata_a  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 10, 32) );
 idata_b  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 80, 32) );
 idata_en <= '1';
-wait 10 ns;
+wait for 10 ns;
 idata_en <= '0';
-wait 1000 ns;
+wait for 1000 ns;
 ```
 
 L'approche est interessante MAIS vous êtes obligé de regarder les signaux a chaque simulation afin de déterminer si le comportement de votre module est correct ou pas. De plus vous allongé la durée de simulation car vous ne maitrisez pas finement le temps d'execution du composant.
@@ -81,19 +81,19 @@ Afin de palier à ces limitations, vous pouvez utiliser l'approche suivante:
 idata_a  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 10, 32) );
 idata_b  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 80, 32) );
 idata_en <= '1';
-wait 10 ns;
+wait for 10 ns;
 while odata_en = '0' loop
     idata_en <= '0';
-    wait 10 ns;
+    wait for 10 ns;
 end loop;
 
 idata_a  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 18, 32) );
 idata_b  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 12, 32) );
 idata_en <= '1';
-wait 10 ns;
+wait for 10 ns;
 while odata_en = '0' loop
     idata_en <= '0';
-    wait 10 ns;
+    wait for 10 ns;
 end loop;
 ```
 
@@ -107,22 +107,22 @@ La situation est plus favorable que précédement, cependant le concepteur a tou
 idata_a  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 10, 32) );
 idata_b  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 80, 32) );
 idata_en <= '1';
-wait 10 ns;
+wait for 10 ns;
 while odata_en = '0' loop
     idata_en <= '0';
-    wait 10 ns;
+    wait for 10 ns;
 end loop;
-ASSERT UNSIGNED( odata = TO_UNSIGNED( 10, 32) ) SEVERITY ERROR;
+ASSERT UNSIGNED(odata) = TO_UNSIGNED( 10, 32) SEVERITY ERROR;
 
 idata_a  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 18, 32) );
 idata_b  <= STD_LOGIC_VECTOR( TO_UNSIGNED( 12, 32) );
 idata_en <= '1';
-wait 10 ns;
+wait for 10 ns;
 while odata_en = '0' loop
     idata_en <= '0';
-    wait 10 ns;
+    wait for 10 ns;
 end loop;
-ASSERT UNSIGNED( odata = TO_UNSIGNED( 6, 32) ) SEVERITY ERROR;
+ASSERT UNSIGNED(odata) = TO_UNSIGNED( 6, 32) SEVERITY ERROR;
 ```
 
 - [X] Modfiez votre testbench afin de tester et de valider cette approche.
