@@ -221,7 +221,7 @@ Afin de mettre au point un système numérique sur carte, il est parfois nécess
 
 Dans cette derniere partie, nous allons nous interesser à l'analyse en temps réel des données traitées par notre module PGDC.
 
-Pour cela, référez vous au document de référence produit par Xilinx ([ug936](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2012_3/ug936-vivado-tutorial-programming-debugging.pdf)). Les informations essentielles sont situées à partir de la page 32.
+Pour cela, référez vous au document de référence produit par Xilinx ([ug936](https://www.xilinx.com/support/documentation/sw_manuals/xilinx2012_3/ug936-vivado-tutorial-programming-debugging.pdf)). Les informations essentielles sont situées à partir de la page 11.
 
 - [X] Utilisez cette technique afin d'observer en temps réel le traitement de vos données dans le module PGDC.
 - [X] Concluez sur les avantages et les inconvénients de cette approche.
