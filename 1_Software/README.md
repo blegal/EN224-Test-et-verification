@@ -86,7 +86,7 @@ Le nombre de couples d'entrées possibles pour votre fonction est égale à (655
 
 Mettez en place les mécanismes d’assertion vus en cours (à partir de la planche 130). Afin de vous assurer que les valeurs d'entrée et de sortie de votre fonction **PGCD** sont toujours cohérentes.
 
-- [X] **Reprenez le code que nous avez écrit durant l'étape 1**.
+- [X] **Reprenez le code que nous avez écrit durant l'étape 2**.
 
 - [X] Dans un premier temps vous n'insérerez que des pré-conditions.
 
@@ -158,6 +158,7 @@ Maintenant dans le fichier **main.cpp** vous allez décrire les séquences de te
   - La seconde section se focalisera sur les cas d'usage ou (A < B),
   - La deniere section traitera sur les cas d'usage ou (A = B).
   
+
 Une fois la description des séquences de test éffectuées:
 
 - [X] Compilez les codes logiciels à l'aide du makefile fourni.
