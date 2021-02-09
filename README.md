@@ -31,3 +31,34 @@ Pour ceux qui sont sous Linux ou ceux qui adorent les terminaux, le plus simple 
 ```
 git clone https://github.com/blegal/EN224-Test-et-verification.git
 ```
+
+## Edition et simulation de VHDL sous MacOS (Linux)
+
+Pour les malchanceux qui ont décidé d'acquérir un MAC alors qu'ils doivent écrire du VHDL, il existe toutefois une solution permettant d'analyser et de simuler des codes VHDL.
+
+Les utilisateurs de MacOS auront besoin d'avoir brew (https://brew.sh/index_fr). L'installation de **ghdl** sera réalisé par la commande suivante:
+
+```
+brew install ghdl
+```
+
+Sous Linux l'utilsation, du gestionnaire de package remplira le meme role:
+
+```
+sudo apt install ghdl gtkwave
+```
+
+Pour analyser un code VHDL, utilisez la commande **ghdl -a**:
+
+```
+ghdl -a ./src/PGCD.vhd
+ghdl -a ./src/PGCD_tb.vhd
+```
+
+Pour générer un fichier executable permettant de simuler vos modules & lancer la simulation du testbench, il faut utiliser **ghdl -r**:
+
+```
+ghdl -r PGCD_tb --vcd=signaux.vcd --stop-time=1000ns
+```
+
+Afin d'observer les signaux qui sont mémorisés dans le fichier **signaux.vcd** vous allez devoir passer par un outil externe. Les possesseur de MAC, préféreront surement ScanSion (http://www.logicpoet.com/scansion/) tandis que les utilisateurs  de Linux utiliseront gtkwave (http://gtkwave.sourceforge.net/).
